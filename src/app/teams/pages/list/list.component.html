@@ -1,0 +1,18 @@
+<h1>Equipos de Futbol</h1>
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="30px">
+
+  <div fxFlex="20"
+       fxFlex.lg="15"
+       fxFlex.sm="30"
+       *ngFor="let team of teams">
+
+    <app-team-card [team]="team"></app-team-card>
+
+  </div>
+</div>

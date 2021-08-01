@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ team.name }}</mat-card-title>
+    <mat-card-subtitle>{{team.shortName}} | {{team.tla}} </mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image [src]="team.crestUrl" [alt]="team.name">
+
+  <mat-card-content>
+    <h3><strong> Estadio: </strong> {{team.venue}}</h3>
+    <h3><strong> Colores del Club: </strong> {{team.clubColors}}</h3>
+    <h3><strong> Liga: </strong> {{team.area.name}}</h3>
+  </mat-card-content>
+
+
+  <mat-card-actions>
+    <button mat-button
+            color="warn"
+            [routerLink]="['/teams', team.id]">
+      Leer más...
+    </button>
+    <button mat-button
+            color="info"
+            [routerLink]="['/teams/edit', team.id]">
+      Editar
+    </button>
+  </mat-card-actions>
+
+</mat-card>

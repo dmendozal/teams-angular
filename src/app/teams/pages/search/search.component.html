@@ -1,0 +1,37 @@
+<div fxLayout="column">
+  <div>
+    <h1>Buscador de Equipos Ingleses</h1>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxLayout="column">
+    <h1>Buscador</h1>
+      <mat-form-field>
+        <mat-label>Team</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               [(ngModel)]="valueToSearch"
+               matInput
+               [matAutocomplete]="auto"
+               (input)="searching()">
+        <mat-autocomplete autoActiveFirstOption
+                          #auto="matAutocomplete"
+                          (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let team of teams" [value]="team">
+            {{team.name}}
+          </mat-option>
+          <mat-option *ngIf="teams.length === 0 && valueToSearch.trim().length > 0" value="">
+            No se encontró resultados con el término {{valueToSearch}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+  </div>
+  <div>
+    <pre>{{teamSelected | json}}</pre>
+  </div>
+  <div *ngIf="teamSelected">
+    <app-team-card [team]="teamSelected"></app-team-card>
+  </div>
+
+</div>
+

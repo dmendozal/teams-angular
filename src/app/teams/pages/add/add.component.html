@@ -1,0 +1,112 @@
+<h1>
+  {{(team.id)? "Editar" : "Nuevo"}}
+  Team
+  <small>{{team.name}}</small>
+</h1>
+
+<div fxLayout="row"
+     fxLayout.xs="column"
+     fxLayoutGap="40px">
+  <div fxFlex="50"
+       fxLayout="column"
+  >
+
+    <div fxLayout="row"
+         fxLayoutGap="20px"
+         fxLayout.xs="column"
+    >
+      <mat-form-field fxFlex="100" fxLayout.xs="column">
+        <mat-label>Nombre del equipo</mat-label>
+        <input matInput
+               type="text"
+               [(ngModel)]="team.name"
+               required
+        >
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Nombre corto</mat-label>
+        <input matInput
+               type="text"
+               [(ngModel)]="team.shortName"
+               required
+        >
+      </mat-form-field>
+      <mat-form-field fxFlex="100">
+        <mat-label>Abreviación</mat-label>
+        <input matInput
+               type="text"
+               [(ngModel)]="team.tla"
+               required
+        >
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Fundación</mat-label>
+      <input matInput
+             type="number"
+             [(ngModel)]="team.founded"
+             required
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Estadio</mat-label>
+      <input matInput
+             type="text"
+             [(ngModel)]="team.venue"
+             required
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Colores del club</mat-label>
+      <input matInput
+             type="text"
+             [(ngModel)]="team.clubColors"
+             required
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Liga:</mat-label>
+      <mat-select [(ngModel)]="team.area.id">
+        <mat-option *ngFor="let league of leagues"
+                    [value]="league.id"
+                    [textContent]="league.name">
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Foto Url:</mat-label>
+      <input matInput
+             type="url"
+             [(ngModel)]="team.crestUrl"
+             required>
+    </mat-form-field>
+    <br>
+    <div fxLayout>
+    <button mat-raised-button
+            color="primary"
+            (click)="saveTeam()">
+      <mat-icon> edit </mat-icon>
+      {{(team.id)? "Actualizar" : "Crear"}} Team
+    </button>
+
+    <span class="spacer"></span>
+
+    <button *ngIf="team.id"
+            mat-raised-button
+            color="warn"
+            (click)="deleteTeam()">
+      <mat-icon> remove </mat-icon>
+      Borrar
+    </button>
+    </div>
+  </div>
+  <div fxFlex="50">
+    <img [src]="team.crestUrl">
+  </div>
+</div>

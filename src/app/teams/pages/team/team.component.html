@@ -1,0 +1,35 @@
+<mat-grid-list cols="1" *ngIf="!team; else divTeam">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divTeam>
+  <div fxLayout="row"
+       fxLayout.xs="column"
+       fxLayoutGap="30">
+    <div fxFlex="50">
+      <h1>{{team.name}}</h1>
+      <mat-divider></mat-divider>
+      <br>
+      <img [src]="team.crestUrl">
+    </div>
+    <div fxFlex="50">
+      <h1>{{team.venue}}</h1>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <mat-list-item>{{team.address}}</mat-list-item>
+        <mat-list-item>{{team.clubColors}}</mat-list-item>
+        <mat-list-item>{{team.founded}}</mat-list-item>
+        <mat-list-item>{{team.website}}</mat-list-item>
+        <mat-list-item>{{team.email}}</mat-list-item>
+      </mat-list>
+      <br>
+      <button mat-button
+              color="warn"
+              (click)="back()">
+        Regresar
+      </button>
+    </div>
+  </div>
+</ng-template>
